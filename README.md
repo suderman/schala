@@ -1,0 +1,1 @@
+My own vim config made into something workable with vimstack. Like any vim configuration, it's always a work in progress!
