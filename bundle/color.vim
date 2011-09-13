@@ -1,4 +1,4 @@
-colorscheme ir_black
+colorscheme lucius
 set background=dark
 
 nmap ;c :colorscheme 
