@@ -1,7 +1,4 @@
 .DS_Store
-after
 backup
-plugin
-bundle/*
-!bundle/suderman/
-!bundle/suderman/plugin
+bundle
+source.vim

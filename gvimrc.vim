@@ -12,7 +12,7 @@ if has("gui_macvim")
   " Hide MacVim toolbar
   set guioptions-=T
 
-  " GUI tabs
+ " GUI tabs
   set guioptions+=e
 
   " Autoselect
