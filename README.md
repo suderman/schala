@@ -4,5 +4,5 @@ My own vim config, dependant on [source.vim](https://github.com/suderman/source.
 
 Installation
 ------------
-`clone git@github.com:suderman/schala.git ~/.vim`  
+`git clone git@github.com:suderman/schala.git ~/.vim`  
 `~/.vim/install.sh`
