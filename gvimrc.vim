@@ -1,5 +1,8 @@
 if has("gui_macvim")
 
+  " Enable option key
+  set macmeta
+
   " MacVim shift+arrow-keys behavior
   let macvim_hig_shift_movement = 1
 

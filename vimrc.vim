@@ -1,4 +1,4 @@
-runtime plugin/source.vim
+﻿runtime plugin/source.vim
 syntax on
 filetype plugin indent on
 
@@ -16,6 +16,7 @@ set title
 set visualbell
 set timeoutlen=500
 set scrolloff=0
+set history=1000
 
 " Status bar
 set number
@@ -101,14 +102,24 @@ nmap - $
 vmap <S-Tab> <gv
 vmap <Tab> >gv
 
+" Better visual block selecting
+set virtualedit+=block
+
 " Searching
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set gdefault
+
+" Open a Quickfix window for the last search.
+nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+" Ack for the last search.
+nnoremap <silent> <leader>? :execute "Ack! '" . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "") . "'"<CR>
 
 " Clear search with comma-space
-nnoremap <leader><space> :noh<cr>
+noremap <leader><space> :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
 
 " Quit
 nmap <leader>q :q<CR>
@@ -146,9 +157,14 @@ map <M-tab>: <C-^>
 nnoremap <leader>p :set invpaste paste?<CR>
 set pastetoggle=<leader>p
 
+" Make 'Y' follow 'D' and 'C' conventions'
+nnoremap Y y$
+
 " u is undo, so make shift-u redo (don't need 'undo line' anyway...)
 nmap U <C-R>
 
+" sudo & write if you forget to sudo first
+cmap w!! w !sudo tee % >/dev/null
 
 " Launch vimrc with ,v
 nmap <leader>v :EditVimRC<CR>
@@ -350,6 +366,17 @@ au FileType python  set tabstop=4 textwidth=79
 Source git://github.com/kchmck/vim-coffee-script.git
 au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
 au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+
+nmap _js :setfiletype javascript<CR>
+nmap _rb :setfiletype ruby<CR>
+nmap _vi :setfiletype vim<CR>
+nmap _ph :setfiletype php<CR>
+nmap _sh :setfiletype sh<CR>
+nmap _cs :setfiletype css<CR>
+nmap _co :setfiletype coffee<CR>
+nmap _sm :setfiletype smarty<CR>
+nmap _md :setfiletype markdown<CR>
+nmap _hm :setfiletype haml<CR>
 
 "============="
 
