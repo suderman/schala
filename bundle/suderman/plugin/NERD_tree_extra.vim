@@ -1,13 +1,3 @@
-" BUNDLE: git://github.com/scrooloose/nerdtree.git
-
-" NERDTree toggles with ,d
-map <Leader>d :NERDTreeToggle<CR>
-map <Leader>dd :NERDTreeRefresh<CR>:NERDTreeFind<CR>
-let NERDTreeIgnore=['\.rbc$', '\~$']
-let NERDTreeDirArrows=1
-let NERDTreeMinimalUI=1
-let NERDTreeShowHidden=1
-
 " Extra features for NERDTree
 " Moved to a plugin to clean up my vimrc
 " Much of this originated from the Janus project

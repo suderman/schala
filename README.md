@@ -1,1 +1,1 @@
-My own vim config made into something workable with vimstack. Like any vim configuration, it's always a work in progress!
+My own vim config, dependant on source.vim. Like any vim configuration, it's always a work in progress!
