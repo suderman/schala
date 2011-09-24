@@ -9,14 +9,13 @@ echo "Linked vimrc, gvimrc"
 
 # Ensure .vim directory and subdirectory for swp files is ready
 mkdir -p "$HOME/.vim/backup"
-echo "Created .vim directory and backup for swp"
+mkdir -p "$HOME/.vim/bundle"
+echo "Created .vim backup and bundle directories"
 
 # Install source.vim
 mkdir -p "$HOME/.vim/plugin"
-mkdir -p "$HOME/.vim/after/syntax/vim"
-if [ ! -d "$HOME/.vim/bundle/source.vim" ]; then
-  git clone git@github.com:suderman/source.vim.git "$HOME/.vim/bundle/source.vim"
+if [ ! -d "$HOME/.vim/source.vim" ]; then
+  git clone git@github.com:suderman/source.vim.git "$HOME/.vim/source.vim"
 fi
-ln -sfn "$HOME/.vim/bundle/source.vim/plugin/source.vim" "$HOME/.vim/plugin/source.vim"
-ln -sfn "$HOME/.vim/bundle/source.vim/after/syntax/vim/source.vim" "$HOME/.vim/after/syntax/vim/source.vim"
+ln -sfn "$HOME/.vim/source.vim/plugin/source.vim" "$HOME/.vim/plugin/source.vim"
 echo "Installed source.vim"
