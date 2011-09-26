@@ -44,8 +44,11 @@ if has("gui_macvim")
   macmenu Edit.Find.Find\.\.\. key=<nop>
   map <D-f> /
 
-  an 25 View.Show/Hide\ Project\ Drawer :NERDTreeToggle<CR>
-  macm View.Show/Hide\ Project\ Drawer key=<D-d>
+  " an 25 View.Show/Hide\ Project\ Drawer :NERDTreeToggle<CR>
+  " macm View.Show/Hide\ Project\ Drawer key=<D-d>
+
+  an 25 View.Project\ Drawer :maca openFileBrowser:<CR>
+  macm View.Project\ Drawer key=<D-d>
 
   an 30 View.Go\ To\ File :CommandT<CR>
   macmenu &Edit.Find.Find\ Next key=<nop>

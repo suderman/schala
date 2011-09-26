@@ -135,8 +135,8 @@ nmap <leader>t :tabnew<CR>
 nmap ;t :tab ball<CR>
 set tabpagemax=50
 
-" Quick access to command mode
-map ;; :
+" Toggle command mode with <Esc>
+nmap <Esc><Esc> :
 
 " F5 will remove trailing whitespace and tabs
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
@@ -161,7 +161,7 @@ set pastetoggle=<leader>p
 nnoremap Y y$
 
 " u is undo, so make shift-u redo (don't need 'undo line' anyway...)
-nmap U <C-R>
+nmap <S-U> <C-R>
 
 " sudo & write if you forget to sudo first
 cmap w!! w !sudo tee % >/dev/null
@@ -456,7 +456,7 @@ Source git://github.com/tpope/vim-bundler.git
 Source git://github.com/scrooloose/nerdtree.git
 
 " NERDTree toggles with ,d
-map <Leader>d :NERDTreeToggle<CR>
+map <Leader>d :NERDTreeToggle \| :silent NERDTreeMirror<CR>
 map <Leader>dd :NERDTreeFind<CR>
 let NERDTreeIgnore=['\.rbc$', '\~$']
 let NERDTreeDirArrows=1
@@ -468,4 +468,7 @@ let NERDTreeShowHidden=1
 "======="
 
 " Fancy status bar I found someplace
-Source https://gist.github.com/1229444
+" Source https://gist.github.com/1229444
+
+" Scrooloose Statusline
+Source https://gist.github.com/1243665
