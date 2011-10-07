@@ -135,8 +135,11 @@ nmap <leader>t :tabnew<CR>
 nmap ;t :tab ball<CR>
 set tabpagemax=50
 
-" Toggle command mode with <Esc>
-nmap <Esc><Esc> :
+" Toggle between modes with <Ctrl-a>
+nnoremap <C-a> :
+cnoremap <C-a> <Esc>
+inoremap <C-a> <Esc>
+vnoremap <C-a> <Esc>
 
 " F5 will remove trailing whitespace and tabs
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
@@ -357,7 +360,7 @@ Source git://github.com/tpope/vim-markdown.git
 au Bufread,BufNewFile {ssh-config} set ft=sshconfig
 au Bufread,BufNewFile {.rvmrc,rvmrc} set ft=sh
 au Bufread,BufNewFile {.gitconfig,gitconfig} set ft=gitconfig
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Capfile,config.ru} set ft=ruby
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set wrap | set wrapmargin=2 | set textwidth=72
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
