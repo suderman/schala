@@ -261,7 +261,7 @@ nmap ;c :colorscheme
 
 "============="
 
-Source git://git.wincent.com/command-t.git if which rvm >/dev/null 2>&1; then rvm system exec rake make; else rake make; fi
+Source git://git.wincent.com/command-t.git /usr/bin/rake make
 
 " Command-T works with ,g --> [G]o-To-File
 let g:CommandTMaxHeight=20
