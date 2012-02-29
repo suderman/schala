@@ -31,8 +31,8 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,public_html/images/**,public_html/upload/**,var/**,*/uploads/**,*/pear/**
 
 " Encoding
-set bomb
-set encoding=utf-8
+" set bomb
+" set encoding=utf-8
 
 " Whitespace
 set nowrap
@@ -160,6 +160,9 @@ map <M-tab>: <C-^>
 nnoremap <leader>p :set invpaste paste?<CR>
 set pastetoggle=<leader>p
 
+" Use OS X clipboard
+set clipboard=unnamed
+
 " Make 'Y' follow 'D' and 'C' conventions'
 nnoremap Y y$
 
@@ -278,6 +281,19 @@ map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
 map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
 map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
 map <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts<cr>
+
+"============="
+
+" CtrlP - possible Command-T replacement?
+Source git://github.com/kien/ctrlp.vim.git
+let g:ctrlp_map = ''
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
+  \ }
+imap <C-g> <ESC>:CtrlP .<CR>
+vmap <C-g> <ESC>:CtrlP .<CR>
+nmap <C-g> <ESC>:CtrlP .<CR>
 
 "============="
 
@@ -453,6 +469,8 @@ Source git://github.com/rygwdn/vim-conque.git
 Source git://github.com/tpope/vim-commentary.git
 Source git://github.com/tpope/vim-rvm.git
 Source git://github.com/tpope/vim-bundler.git
+Source git://github.com/chrisbra/NrrwRgn.git
+Source git://github.com/jeetsukumaran/vim-buffergator.git
 
 "============="
 
