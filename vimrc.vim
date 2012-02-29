@@ -2,7 +2,7 @@
 syntax on
 filetype plugin indent on
 
-" Determine machine (fenring.nonfiction.ca, ginaz.nonfiction.ca, something.local)
+" Determine machine (alpha.mydevbox.com, beta.mydevbox.com, something.local)
 let hostname = substitute(system('hostname'), '\n', '', '')
 
 " Comma is the leader character
