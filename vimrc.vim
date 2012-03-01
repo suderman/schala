@@ -167,7 +167,7 @@ set clipboard=unnamed
 nnoremap Y y$
 
 " u is undo, so make shift-u redo (don't need 'undo line' anyway...)
-nmap <S-U> <C-R>
+nmap <S-u> <C-R>
 
 " sudo & write if you forget to sudo first
 cmap w!! w !sudo tee % >/dev/null
@@ -246,6 +246,7 @@ endfunction
 nmap <S-k> :Buffers<CR>
 
 "============="
+set t_Co=256
 
 " Source git://github.com/godlygeek/csapprox.git
 
@@ -258,7 +259,7 @@ Source git://github.com/altercation/vim-colors-solarized.git
 let g:solarized_contrast="high"
 call togglebg#map(";b")
 
-colorscheme lucius
+colorscheme desert256
 set background=dark
 nmap ;c :colorscheme 
 
@@ -492,4 +493,7 @@ let NERDTreeShowHidden=1
 " Source https://gist.github.com/1229444
 
 " Scrooloose Statusline
-Source https://gist.github.com/1243665
+"Source https://gist.github.com/1243665
+
+Source https://github.com/Lokaltog/vim-powerline
+let g:Powerline_symbols = 'fancy'
