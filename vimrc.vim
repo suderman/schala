@@ -31,8 +31,8 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,public_html/images/**,public_html/upload/**,var/**,*/uploads/**,*/pear/**
 
 " Encoding
+set encoding=utf-8
 " set bomb
-" set encoding=utf-8
 
 " Whitespace
 set nowrap
@@ -497,3 +497,6 @@ let NERDTreeShowHidden=1
 
 Source https://github.com/Lokaltog/vim-powerline
 let g:Powerline_symbols = 'fancy'
+
+
+noremap <C-m> <Esc>:redraw!<CR>
