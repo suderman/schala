@@ -466,12 +466,12 @@ Source git://github.com/vim-scripts/IndexedSearch.git
 Source git://github.com/vim-scripts/closetag.vim.git
 Source git://github.com/airblade/vim-rooter.git
 Source git://github.com/mortice/pbcopy.vim.git
-Source git://github.com/rygwdn/vim-conque.git
-Source git://github.com/tpope/vim-commentary.git
+"Source git://github.com/rygwdn/vim-conque.git
+"Source git://github.com/tpope/vim-commentary.git
 Source git://github.com/tpope/vim-rvm.git
 Source git://github.com/tpope/vim-bundler.git
 Source git://github.com/chrisbra/NrrwRgn.git
-Source git://github.com/jeetsukumaran/vim-buffergator.git
+"Source git://github.com/jeetsukumaran/vim-buffergator.git
 
 "============="
 
@@ -497,3 +497,7 @@ let NERDTreeShowHidden=1
 
 Source https://github.com/Lokaltog/vim-powerline
 let g:Powerline_symbols = 'fancy'
+
+" Fancy rails/tmux tdd goodness
+Source https://github.com/kikijump/tslime.vim
+Source https://github.com/jgdavey/vim-turbux
