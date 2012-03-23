@@ -31,8 +31,8 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,public_html/images/**,public_html/upload/**,var/**,*/uploads/**,*/pear/**
 
 " Encoding
+set encoding=utf-8
 " set bomb
-" set encoding=utf-8
 
 " Whitespace
 set nowrap
@@ -501,3 +501,6 @@ let g:Powerline_symbols = 'fancy'
 " Fancy rails/tmux tdd goodness
 Source https://github.com/kikijump/tslime.vim
 Source https://github.com/jgdavey/vim-turbux
+
+" Redraw shortcut
+noremap <C-m> <Esc>:redraw!<CR>
