@@ -121,11 +121,6 @@ nnoremap <silent> <leader>? :execute "Ack! '" . substitute(substitute(substitute
 " Clear search with comma-space
 noremap <leader><space> :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
 
-" Quit
-nmap <leader>q :q<CR>
-nmap <leader>qq :q!<CR>
-nmap <leader>qqq :qa!<CR>
-
 nmap <S-h> :tabprevious<CR>
 nmap <S-l> :tabnext<CR>
 nmap < :tabprevious<CR>
@@ -135,11 +130,11 @@ nmap <leader>t :tabnew<CR>
 nmap ;t :tab ball<CR>
 set tabpagemax=50
 
-" Toggle between modes with <Ctrl-a>
-nnoremap <C-a> :
-cnoremap <C-a> <Esc>
-inoremap <C-a> <Esc>
-vnoremap <C-a> <Esc>
+" Toggle between modes with <Ctrl-q>
+nnoremap <C-q> :
+cnoremap <C-q> <Esc>
+inoremap <C-q> <Esc>
+vnoremap <C-q> <Esc>
 
 " F5 will remove trailing whitespace and tabs
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
@@ -184,9 +179,6 @@ function! s:EditVimRC()
   endif
 endfunction
 
-
-
-
 "============="
 
 command! SearchFile let q = input("Search within this file: ") | exe "/".q."/"
@@ -220,7 +212,7 @@ map <leader>s? z=
 
 "============="
 
-Source git://github.com/mileszs/ack.vim.git
+Source https://github.com/mileszs/ack.vim
 
 " Use Ack instead of Grep when available
 if executable("ack")
@@ -231,7 +223,7 @@ endif
 
 "============="
 
-Source git://github.com/vim-scripts/bufexplorer.zip.git
+Source https://github.com/vim-scripts/bufexplorer.zip
 
 command! Buffers call s:Buffers()
 function! s:Buffers()
@@ -248,14 +240,12 @@ nmap <S-k> :Buffers<CR>
 "============="
 set t_Co=256
 
-" Source git://github.com/godlygeek/csapprox.git
-
-Source git://github.com/vim-scripts/ScrollColors.git
+Source https://github.com/vim-scripts/ScrollColors
 nmap ;cc :COLORSCROLL<CR>
 
-Source git://github.com/bzx/vim-theme-pack.git
+Source https://github.com/bzx/vim-theme-pack
 
-Source git://github.com/altercation/vim-colors-solarized.git
+Source https://github.com/altercation/vim-colors-solarized
 let g:solarized_contrast="high"
 call togglebg#map(";b")
 
@@ -265,28 +255,9 @@ nmap ;c :colorscheme
 
 "============="
 
-Source git://git.wincent.com/command-t.git /usr/bin/rake make
+" CtrlP
+Source https://github.com/kien/ctrlp.vim
 
-" Command-T works with ,g --> [G]o-To-File
-let g:CommandTMaxHeight=20
-let g:CommandTCancelMap = ['<C-c>', '<Esc>']
-map <Leader>g :CommandTFlush<CR>\|:CommandT<CR>
-map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
-
-" Rails navigation
-map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
-map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
-map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
-map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
-map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
-map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
-map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
-map <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts<cr>
-
-"============="
-
-" CtrlP - possible Command-T replacement?
-Source git://github.com/kien/ctrlp.vim.git
 let g:ctrlp_map = ''
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
@@ -298,7 +269,7 @@ nmap <C-g> <ESC>:CtrlP .<CR>
 
 "============="
 
-Source git://github.com/mattn/gist-vim.git
+Source https://github.com/mattn/gist-vim
 
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
@@ -310,14 +281,14 @@ endif
 
 "============="
 
-Source git://github.com/roman/golden-ratio.git
+Source https://github.com/roman/golden-ratio
 
 let g:golden_ratio_autocommand = 0
 nmap ;r :GoldenRatioToggle<CR>
 
 "============="
 
-Source git://github.com/sjl/gundo.vim.git
+Source https://github.com/sjl/gundo.vim
 
 " ,u will show undo history graph
 nnoremap <leader>u :GundoToggle<CR>
@@ -325,11 +296,7 @@ let g:gundo_right = 1
 
 "============="
 
-Source git://github.com/robgleeson/hammer.vim.git
-
-"============="
-
-Source git://github.com/rgarver/Kwbd.vim.git
+Source https://github.com/rgarver/Kwbd.vim
 
 " :bd deletes a buffer, :BD deletes a buffer and keeps its window
 command! BD Kwbd
@@ -357,7 +324,7 @@ nmap <Space> %
 
 "============="
 
-Source git://github.com/Lokaltog/vim-easymotion.git
+Source https://github.com/Lokaltog/vim-easymotion
 
 let g:EasyMotion_leader_key = ';m'
 
@@ -367,11 +334,11 @@ nmap <leader>m m`:normal! H<cr>;mw
 
 "============="
 
-Source git://github.com/vim-scripts/jade.vim.git
-Source git://github.com/vim-scripts/jQuery.git
-Source git://github.com/tpope/vim-haml.git
-Source git://github.com/pangloss/vim-javascript.git
-Source git://github.com/tpope/vim-markdown.git
+Source https://github.com/vim-scripts/jade.vim
+Source https://github.com/vim-scripts/jQuery
+Source https://github.com/tpope/vim-haml
+Source https://github.com/pangloss/vim-javascript
+Source https://github.com/tpope/vim-markdown
 
 " special filetype syntax coloring
 au Bufread,BufNewFile {ssh-config} set ft=sshconfig
@@ -383,7 +350,7 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set wrap | set wrapmarg
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 textwidth=79
 
-Source git://github.com/kchmck/vim-coffee-script.git
+Source https://github.com/kchmck/vim-coffee-script
 au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
 au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 
@@ -400,7 +367,7 @@ nmap _hm :setfiletype haml<CR>
 
 "============="
 
-Source git://github.com/tpope/vim-unimpaired.git
+Source https://github.com/tpope/vim-unimpaired
 
 " Bubble multiple lines
 vmap _ [egv
@@ -408,7 +375,7 @@ vmap + ]egv
 
 "============="
 
-Source git://github.com/vim-scripts/YankRing.vim.git
+Source https://github.com/vim-scripts/YankRing.vim
 
 nnoremap <silent> [p :YRShow<cr>
 inoremap <silent> [p <ESC>:YRShow<cr>
@@ -416,62 +383,46 @@ let g:yankring_history_file = '.yankring_history'
 
 "============="
 
-Source git://github.com/vim-scripts/ZoomWin.git
+Source https://github.com/vim-scripts/ZoomWin
 
 map <Leader>z :ZoomWin<CR>
 
 "============="
 
-Source git://github.com/scrooloose/syntastic.git
+Source https://github.com/scrooloose/syntastic
 
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=1
 
 "============="
 
-Source git://github.com/sophacles/vim-bundle-sparkup.git
-
-" Location of the sparkup executable. Seems to finding it in the same dir as the vim script.
-let g:sparkup = 'sparkup'
-
-" Additional args passed to sparkup.
-let g:sparkupArgs = '--no-last-newline'
-
-" Mapping used to execute sparkup.
-let g:sparkupExecuteMapping = '<c-e>'
-
-" Mapping used to jump to the next empty tag/attribute (leaving this as <c-n> breaks tab-completion)
-let g:sparkupNextMapping = '<c-x>'
+Source https://github.com/tpope/vim-rails
+Source https://github.com/tsaleh/vim-shoulda
 
 "============="
 
-Source git://github.com/tpope/vim-rails.git
-Source git://github.com/tsaleh/vim-shoulda.git
+" Auto-close parenthesis and quotes
+Source https://github.com/kana/vim-smartinput
+"Source https://github.com/Raimondi/delimitMate
+"Source https://github.com/jiangmiao/auto-pairs
 
 "============="
 
-Source git://github.com/tomtom/tcomment_vim.git
-Source git://github.com/ervandew/supertab.git
-Source git://github.com/msanders/snipmate.vim.git
-Source git://github.com/Raimondi/delimitMate.git
-Source git://github.com/tpope/vim-fugitive.git
-Source git://github.com/tpope/vim-git.git
-Source git://github.com/tpope/vim-surround.git
-Source git://github.com/tpope/vim-unimpaired.git
-Source git://github.com/tpope/vim-endwise.git
-Source git://github.com/tpope/vim-repeat.git
-Source git://github.com/tsaleh/vim-align.git
-Source git://github.com/vim-scripts/camelcasemotion.git
-Source git://github.com/vim-scripts/IndexedSearch.git
-Source git://github.com/vim-scripts/closetag.vim.git
-Source git://github.com/airblade/vim-rooter.git
-Source git://github.com/mortice/pbcopy.vim.git
-Source git://github.com/rygwdn/vim-conque.git
-Source git://github.com/tpope/vim-commentary.git
-Source git://github.com/tpope/vim-rvm.git
-Source git://github.com/tpope/vim-bundler.git
-Source git://github.com/chrisbra/NrrwRgn.git
-Source git://github.com/jeetsukumaran/vim-buffergator.git
+Source https://github.com/tpope/vim-endwise
+Source https://github.com/msanders/snipmate.vim
+Source https://github.com/tomtom/tcomment_vim
+Source https://github.com/ervandew/supertab
+Source https://github.com/tpope/vim-fugitive
+Source https://github.com/tpope/vim-git
+Source https://github.com/tpope/vim-surround
+Source https://github.com/tpope/vim-unimpaired
+Source https://github.com/tpope/vim-repeat
+Source https://github.com/tsaleh/vim-align
+Source https://github.com/vim-scripts/camelcasemotion
+Source https://github.com/vim-scripts/IndexedSearch
+Source https://github.com/airblade/vim-rooter
+Source https://github.com/mortice/pbcopy.vim
+Source https://github.com/tpope/vim-bundler
 
 "============="
 
@@ -485,15 +436,14 @@ let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 
-
-
 "======="
+
+" STATUS BAR
+Source https://github.com/Lokaltog/vim-powerline
+let g:Powerline_symbols = 'fancy'
 
 " Fancy status bar I found someplace
 " Source https://gist.github.com/1229444
 
 " Scrooloose Statusline
 "Source https://gist.github.com/1243665
-
-Source https://github.com/Lokaltog/vim-powerline
-let g:Powerline_symbols = 'fancy'

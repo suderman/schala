@@ -100,3 +100,62 @@ let g:buftabs_in_statusline=1
 let g:buftabs_only_basename=1
 let g:buftabs_active_highlight_group="Visual"
 
+
+"============="
+
+Source git://git.wincent.com/command-t.git /usr/bin/rake make
+
+" Command-T works with ,g --> [G]o-To-File
+let g:CommandTMaxHeight=20
+let g:CommandTCancelMap = ['<C-c>', '<Esc>']
+map <Leader>g :CommandTFlush<CR>\|:CommandT<CR>
+map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
+
+" Rails navigation
+map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
+map <leader>gc :CommandTFlush<cr>\|:CommandT app/controllers<cr>
+map <leader>gm :CommandTFlush<cr>\|:CommandT app/models<cr>
+map <leader>gh :CommandTFlush<cr>\|:CommandT app/helpers<cr>
+map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
+map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
+map <leader>gs :CommandTFlush<cr>\|:CommandT public/stylesheets<cr>
+map <leader>gj :CommandTFlush<cr>\|:CommandT public/javascripts<cr>
+
+"============="
+
+Source git://github.com/godlygeek/csapprox.git
+
+"============="
+
+Source git://github.com/sophacles/vim-bundle-sparkup.git
+
+" Location of the sparkup executable. Seems to finding it in the same dir as the vim script.
+let g:sparkup = 'sparkup'
+
+" Additional args passed to sparkup.
+let g:sparkupArgs = '--no-last-newline'
+
+" Mapping used to execute sparkup.
+let g:sparkupExecuteMapping = '<c-e>'
+
+" Mapping used to jump to the next empty tag/attribute (leaving this as <c-n> breaks tab-completion)
+let g:sparkupNextMapping = '<c-x>'
+
+"============="
+
+" Quit
+nmap <leader>q :q<CR>
+nmap <leader>qq :q!<CR>
+nmap <leader>qqq :qa!<CR>
+
+"============="
+
+Source git://github.com/robgleeson/hammer.vim.git
+Source https://github.com/rygwdn/vim-conque
+Source https://github.com/vim-scripts/closetag.vim
+Source https://github.com/tpope/vim-commentary
+Source https://github.com/tpope/vim-rvm
+Source https://github.com/jeetsukumaran/vim-buffergator
+Source https://github.com/chrisbra/NrrwRgn
+
+"============="
