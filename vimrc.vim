@@ -31,8 +31,8 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,public_html/images/**,public_html/upload/**,var/**,*/uploads/**,*/pear/**
 
 " Encoding
+set encoding=utf-8
 " set bomb
-" set encoding=utf-8
 
 " Whitespace
 set nowrap
@@ -138,6 +138,9 @@ vnoremap <C-q> <Esc>
 
 " F5 will remove trailing whitespace and tabs
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
+
+" Redraw shortcut
+noremap <C-m> <Esc>:redraw!<CR>
 
 " Opens an edit command with the path of the currently edited file filled in
 map :ee :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -399,6 +402,10 @@ let g:syntastic_quiet_warnings=1
 Source https://github.com/tpope/vim-rails
 Source https://github.com/tsaleh/vim-shoulda
 
+" Fancy rails/tmux tdd goodness
+Source https://github.com/kikijump/tslime.vim
+Source https://github.com/jgdavey/vim-turbux
+
 "============="
 
 " Auto-close parenthesis and quotes
@@ -426,7 +433,7 @@ Source https://github.com/tpope/vim-bundler
 
 "============="
 
-Source git://github.com/scrooloose/nerdtree.git
+Source https://github.com/scrooloose/nerdtree
 
 " NERDTree toggles with ,d
 map <Leader>d :NERDTreeToggle \| :silent NERDTreeMirror<CR>
