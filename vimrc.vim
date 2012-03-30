@@ -403,6 +403,7 @@ let g:syntastic_quiet_warnings=1
 
 Source https://github.com/tpope/vim-rails
 Source https://github.com/tsaleh/vim-shoulda
+Source https://github.com/tpope/vim-rvm
 
 " Fancy rails/tmux tdd goodness
 Source https://github.com/kikijump/tslime.vim
