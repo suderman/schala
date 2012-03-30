@@ -383,6 +383,8 @@ Source https://github.com/vim-scripts/YankRing.vim
 nnoremap <silent> [p :YRShow<cr>
 inoremap <silent> [p <ESC>:YRShow<cr>
 let g:yankring_history_file = '.yankring_history'
+let g:yankring_min_element_length = 2
+let g:yankring_manual_clipboard_check = 1
 
 "============="
 
