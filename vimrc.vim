@@ -335,6 +335,7 @@ let g:EasyMotion_leader_key = ';m'
 " double tap `` to go back to previous cursor position
 nmap <leader>m m`:normal! H<cr>;mw
 
+
 "============="
 
 Source https://github.com/vim-scripts/jade.vim
@@ -403,7 +404,7 @@ let g:syntastic_quiet_warnings=1
 
 Source https://github.com/tpope/vim-rails
 Source https://github.com/tsaleh/vim-shoulda
-Source https://github.com/tpope/vim-rvm
+"Source https://github.com/tpope/vim-rvm
 
 " Fancy rails/tmux tdd goodness
 Source https://github.com/kikijump/tslime.vim
