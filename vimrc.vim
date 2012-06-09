@@ -355,8 +355,10 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set wrap | set wrapmarg
 au FileType python  set tabstop=4 textwidth=79
 
 Source https://github.com/kchmck/vim-coffee-script
-au BufWritePost *.coffee silent CoffeeMake! -b | cwindow | redraw!
-au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable | set ft=coffee
+
+Source https://github.com/lunaru/vim-less
+au BufNewFile,BufReadPost *.less set ft=less
 
 nmap _js :setfiletype javascript<CR>
 nmap _rb :setfiletype ruby<CR>
@@ -413,8 +415,8 @@ Source https://github.com/jgdavey/vim-turbux
 "============="
 
 " Auto-close parenthesis and quotes
-Source https://github.com/kana/vim-smartinput
-"Source https://github.com/Raimondi/delimitMate
+"Source https://github.com/kana/vim-smartinput
+Source https://github.com/Raimondi/delimitMate
 "Source https://github.com/jiangmiao/auto-pairs
 
 "============="
@@ -457,4 +459,4 @@ let g:Powerline_symbols = 'fancy'
 " Source https://gist.github.com/1229444
 
 " Scrooloose Statusline
-"Source https://gist.github.com/1243665
+" Source https://gist.github.com/1243665
