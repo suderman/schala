@@ -28,7 +28,7 @@ set laststatus=2
 " Wild stuff!
 set wildmenu
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,public_html/images/**,public_html/upload/**,var/**,*/uploads/**,*/pear/**
+set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,*/public_html/images/**,*/public_html/upload/**,*/public/images/**,*/public/upload/**,*/var/**,*/uploads/**,*/pear/**
 
 " Encoding
 set encoding=utf-8
@@ -344,6 +344,10 @@ Source https://github.com/tpope/vim-haml
 Source https://github.com/pangloss/vim-javascript
 Source https://github.com/tpope/vim-markdown
 
+Source https://github.com/othree/html5.vim
+Source https://github.com/theprivileges/smarty.vim
+au BufNewFile,BufReadPost *.html set ft=smarty
+
 " special filetype syntax coloring
 au Bufread,BufNewFile {ssh-config} set ft=sshconfig
 au Bufread,BufNewFile {.rvmrc,rvmrc} set ft=sh
@@ -357,7 +361,9 @@ au FileType python  set tabstop=4 textwidth=79
 Source https://github.com/kchmck/vim-coffee-script
 au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable | set ft=coffee
 
-Source https://github.com/lunaru/vim-less
+Source https://github.com/skammer/vim-css-color
+Source https://github.com/hail2u/vim-css3-syntax
+Source https://github.com/groenewege/vim-less
 au BufNewFile,BufReadPost *.less set ft=less
 
 nmap _js :setfiletype javascript<CR>
