@@ -366,6 +366,8 @@ Source https://github.com/hail2u/vim-css3-syntax
 Source https://github.com/groenewege/vim-less
 au BufNewFile,BufReadPost *.less set ft=less
 
+Source https://github.com/vim-scripts/VimClojure
+
 nmap _js :setfiletype javascript<CR>
 nmap _rb :setfiletype ruby<CR>
 nmap _vi :setfiletype vim<CR>
@@ -455,7 +457,7 @@ let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 
-"======="
+"======"
 
 " STATUS BAR
 Source https://github.com/Lokaltog/vim-powerline
