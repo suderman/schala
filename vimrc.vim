@@ -28,7 +28,7 @@ set laststatus=2
 " Wild stuff!
 set wildmenu
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,*/public_html/images/**,*/public_html/upload/**,*/public/images/**,*/public/upload/**,*/var/**,*/uploads/**,*/pear/**
+set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,*/public_html/images/**,*/public_html/upload/**,*/public/images/**,*/public/upload/**,./var/**,*/uploads/**,*/pear/**
 
 " Encoding
 set encoding=utf-8
