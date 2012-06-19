@@ -355,6 +355,8 @@ au Bufread,BufNewFile {.gitconfig,gitconfig} set ft=gitconfig
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Capfile,config.ru} set ft=ruby
 au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set wrap | set wrapmargin=2 | set textwidth=72
 
+Source https://github.com/ervandew/supertab
+highlight Pmenu ctermbg=238 gui=bold
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 textwidth=79
 
@@ -432,7 +434,6 @@ Source https://github.com/Raimondi/delimitMate
 Source https://github.com/tpope/vim-endwise
 Source https://github.com/msanders/snipmate.vim
 Source https://github.com/tomtom/tcomment_vim
-Source https://github.com/ervandew/supertab
 Source https://github.com/tpope/vim-fugitive
 Source https://github.com/tpope/vim-git
 Source https://github.com/tpope/vim-surround
@@ -444,6 +445,19 @@ Source https://github.com/vim-scripts/IndexedSearch
 Source https://github.com/airblade/vim-rooter
 Source https://github.com/mortice/pbcopy.vim
 Source https://github.com/tpope/vim-bundler
+
+"============="
+
+" Supertab and autocomplete
+Source https://github.com/ervandew/supertab
+let g:SuperTabDefaultCompletionType = "context"
+
+"============="
+
+" Omni completion popup menu
+"Source https://github.com/spf13/PIV
+Source https://github.com/vim-scripts/rubycomplete.vim
+highlight Pmenu ctermbg=238 gui=bold
 
 "============="
 
