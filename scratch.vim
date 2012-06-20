@@ -159,3 +159,13 @@ Source https://github.com/jeetsukumaran/vim-buffergator
 Source https://github.com/chrisbra/NrrwRgn
 
 "============="
+
+" Fancy status bar I found someplace
+Source https://gist.github.com/1229444
+
+" Scrooloose Statusline
+Source https://gist.github.com/1243665
+
+Source https://github.com/kana/vim-smartinput
+Source https://github.com/jiangmiao/auto-pairs
+Source https://github.com/tpope/vim-rvm

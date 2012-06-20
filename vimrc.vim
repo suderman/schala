@@ -416,7 +416,6 @@ let g:syntastic_quiet_warnings=1
 
 Source https://github.com/tpope/vim-rails
 Source https://github.com/tsaleh/vim-shoulda
-"Source https://github.com/tpope/vim-rvm
 
 " Fancy rails/tmux tdd goodness
 Source https://github.com/kikijump/tslime.vim
@@ -425,9 +424,7 @@ Source https://github.com/jgdavey/vim-turbux
 "============="
 
 " Auto-close parenthesis and quotes
-"Source https://github.com/kana/vim-smartinput
 Source https://github.com/Raimondi/delimitMate
-"Source https://github.com/jiangmiao/auto-pairs
 
 "============="
 
@@ -477,8 +474,3 @@ let NERDTreeShowHidden=1
 Source https://github.com/Lokaltog/vim-powerline
 let g:Powerline_symbols = 'fancy'
 
-" Fancy status bar I found someplace
-" Source https://gist.github.com/1229444
-
-" Scrooloose Statusline
-" Source https://gist.github.com/1243665
