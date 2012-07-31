@@ -453,7 +453,7 @@ let g:SuperTabDefaultCompletionType = "context"
 
 " Omni completion popup menu
 "Source https://github.com/spf13/PIV
-Source https://github.com/vim-scripts/rubycomplete.vim
+"Source https://github.com/vim-scripts/rubycomplete.vim
 highlight Pmenu ctermbg=238 gui=bold
 
 "============="
