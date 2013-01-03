@@ -21,6 +21,9 @@ if has("gui_macvim")
   " Grey menu items
   set guioptions+=g
 
+  set guifont=Consolas:h17
+  colorscheme lucius
+
   map <D-]> :bnext<CR>
   map <D-[> :bprev<CR>
 
