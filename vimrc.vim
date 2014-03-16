@@ -9,12 +9,14 @@ let hostname = substitute(system('hostname'), '\n', '', '')
 let mapleader = ","
 
 " Basic stuff
-set hidden
+set nocompatible                       " allow editor to be Vim instead of Vi
 set mouse=a                            " allow the mouse to be used
+set title                              " set the window's title to the current filename
 set visualbell                         " no more beeping from Vim
 set timeoutlen=500
 set scrolloff=0
 set history=1000
+set number                             " show line numbers
 set cursorline                         " highlight current line
 set fillchars=vert:│                   " Solid line for vsplit separator
 
@@ -35,7 +37,7 @@ let g:airline_symbols.linenr = '⭡'
 
 
 " Wild stuff!
-set wildmenu
+set wildmenu                           " visual autocomplete for command menu
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,*/public_html/images/**,*/public_html/upload/**,*/public/images/**,*/public/upload/**,./var/**,*/uploads/**,*/pear/**,*/build/**
 
@@ -45,10 +47,10 @@ set encoding=utf-8
 
 " Whitespace
 set nowrap
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
+set tabstop=2                           " number of visual spaces per tab
+set softtabstop=2                       " number of spaces in tab when editing
+set expandtab                           " tabs are spaces!
+set shiftwidth=2                        " how many spaces to indent/outdent
 set list listchars=tab:\ \ ,trail:·
 set backspace=indent,eol,start
 
@@ -90,10 +92,10 @@ vmap <C-h> <C-W><
 vmap <C-l> <C-W>>
 
 " Let directional keys work in Insert Mode. Ctrl-[h,j,k,l]
-imap <C-j> <Esc>ja
-imap <C-k> <Esc>ka
-imap <C-h> <Esc>ha
-imap <C-l> <Esc>la
+imap <C-j> <Down>
+imap <C-k> <Up>
+imap <C-h> <Left>
+imap <C-l> <Right>
 
 " Cursor movement in command mode
 cmap <C-j> <Down>
@@ -108,11 +110,18 @@ cmap <C-v> <C-R>"
 nmap - $
 
 " Visual shifting (builtin-repeat)
-vmap <S-Tab> <gv
-vmap <Tab> >gv
+vmap < <gv
+vmap > >gv
 
 " Better visual block selecting
 set virtualedit+=block
+set virtualedit+=insert
+set virtualedit+=onemore
+
+" Hide buffers or auto-save?
+set hidden       " allow unsaved buffers to be hidden
+set autoread      " Set to auto read when a file is changed from the outside
+" set autowriteall  " Automatically save buffers
 
 " Searching
 set hlsearch
@@ -121,29 +130,8 @@ set ignorecase
 set smartcase
 set gdefault
 
-" Open a Quickfix window for the last search.
-nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
-
-" Ack for the last search.
-nnoremap <silent> <leader>? :execute "Ack! '" . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "") . "'"<CR>
-
 " Clear search with comma-space
 noremap <leader><space> :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
-
-nmap <S-h> :tabprevious<CR>
-nmap <S-l> :tabnext<CR>
-nmap < :tabprevious<CR>
-nmap > :tabnext<CR>
-
-nmap <leader>t :tabnew<CR>
-nmap ;t :tab ball<CR>
-set tabpagemax=50
-
-" Toggle between modes with <Ctrl-q>
-nnoremap <C-q> :
-cnoremap <C-q> <Esc>
-inoremap <C-q> <Esc>
-vnoremap <C-q> <Esc>
 
 " F5 will remove trailing whitespace and tabs
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
@@ -161,7 +149,6 @@ nnoremap ;cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader><leader> <c-^>
 nmap <leader>6 <C-^>
 nmap <leader>^ <C-^>
-map <M-tab>: <C-^>
 
 " When pasting from OS's clipboard, hit ,P command-v ,P
 nnoremap <leader>p :set invpaste paste?<CR>
@@ -172,9 +159,6 @@ set clipboard=unnamed
 
 " Make 'Y' follow 'D' and 'C' conventions'
 nnoremap Y y$
-
-" u is undo, so make shift-u redo (don't need 'undo line' anyway...)
-nmap <S-u> <C-R>
 
 " sudo & write if you forget to sudo first
 cmap w!! w !sudo tee % >/dev/null
@@ -270,6 +254,7 @@ nmap ;c :colorscheme
 " CtrlP
 Source https://github.com/kien/ctrlp.vim
 
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_map = ''
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
@@ -290,13 +275,6 @@ if has("mac")
 elseif has("unix")
   let g:gist_clip_command = 'xclip -selection clipboard'
 endif
-
-"============="
-
-Source https://github.com/roman/golden-ratio
-
-let g:golden_ratio_autocommand = 0
-nmap ;r :GoldenRatioToggle<CR>
 
 "============="
 
@@ -332,7 +310,8 @@ nmap <leader>w :w<CR>
 "============="
 
 runtime! macros/matchit.vim
-nmap <Space> %
+" nmap <Space> %
+Source https://github.com/Valloric/MatchTagAlways.git
 
 "============="
 
@@ -371,6 +350,9 @@ au FileType python  set tabstop=4 textwidth=79
 
 Source https://github.com/kchmck/vim-coffee-script
 au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable | set ft=coffee
+
+Source https://github.com/lchi/vim-toffee
+au BufNewFile,BufReadPost *.toffee set ft=toffee
 
 Source https://github.com/skammer/vim-css-color
 Source https://github.com/hail2u/vim-css3-syntax
@@ -419,7 +401,7 @@ map <Leader>z :ZoomWin<CR>
 Source https://github.com/scrooloose/syntastic
 
 let g:syntastic_enable_signs=1
-let g:syntastic_quiet_warnings=1
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 
 "============="
 

@@ -179,3 +179,43 @@ let g:Powerline_symbols = 'fancy'
 
 "======"
 
+" Let directional keys work in Insert Mode. Ctrl-[h,j,k,l]
+imap <C-j> <Esc>ja
+imap <C-k> <Esc>ka
+imap <C-h> <Esc>ha
+imap <C-l> <Esc>la
+
+" Visual shifting (builtin-repeat)
+vmap <S-Tab> <gv
+vmap <Tab> >gv
+
+" Tab stuff
+nmap <S-h> :tabprevious<CR>
+nmap <S-l> :tabnext<CR>
+nmap < :tabprevious<CR>
+nmap > :tabnext<CR>
+
+nmap <leader>t :tabnew<CR>
+nmap ;t :tab ball<CR>
+set tabpagemax=50
+
+" Toggle between modes with <Ctrl-q>
+nnoremap <C-q> :
+cnoremap <C-q> <Esc>
+inoremap <C-q> <Esc>
+vnoremap <C-q> <Esc>
+
+" Open a Quickfix window for the last search.
+nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+" u is undo, so make shift-u redo (don't need 'undo line' anyway...)
+nmap <S-u> <C-R>
+
+
+"============="
+
+Source https://github.com/roman/golden-ratio
+
+let g:golden_ratio_autocommand = 0
+nmap ;r :GoldenRatioToggle<CR>
+
