@@ -208,9 +208,22 @@ vnoremap <C-q> <Esc>
 " Open a Quickfix window for the last search.
 nnoremap <silent> <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 
+" Ack for the last search.
+nnoremap <silent> <leader>? :execute "Ack! '" . substitute(substitute(substitute(@/, "\\\\<", "\\\\b", ""), "\\\\>", "\\\\b", ""), "\\\\v", "", "") . "'"<CR>
+
 " u is undo, so make shift-u redo (don't need 'undo line' anyway...)
 nmap <S-u> <C-R>
 
+Source https://github.com/mileszs/ack.vim
+
+" Use Ack instead of Grep when available
+if executable("ack")
+  " set grepprg=ack\ -H\ --nogroup\ --nocolor\ --dump
+  set grepprg=ack\ -H\ --nogroup\ --nocolor
+  " nnoremap <leader>a :Ack -a ""<left>
+  nnoremap <leader>a :Ack ""<left>
+  cabbrev ack Ack ""<left>
+endif
 
 "============="
 

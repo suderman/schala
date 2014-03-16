@@ -185,8 +185,8 @@ nmap <leader>r :SearchReplace<CR>
 command! SearchReplaceLast let r = input("Replace last search with this: ") | exe ":%s//".r."/g"
 nmap <leader>rr :SearchReplaceLast<CR>
 
-if executable("ack")
-  command! SearchProject let q = input("Search within this project: ") | exe ":Ack -a ".q
+if executable("ag")
+  command! SearchProject let q = input("Search within this project: ") | exe ":Ag -a ".q
 endif
 
 "============="
@@ -208,13 +208,13 @@ map <leader>s? z=
 
 "============="
 
-Source https://github.com/mileszs/ack.vim
+" Ag - The Silver Searcher
+Source https://github.com/rking/ag.vim
 
-" Use Ack instead of Grep when available
-if executable("ack")
-  set grepprg=ack\ -H\ --nogroup\ --nocolor
-  nnoremap <leader>a :Ack -a ""<left>
-  cabbrev ack Ack -a ""<left>
+" Use Ag instead of Grep when available
+if executable("ag")
+  set grepprg=ag\ -H\ --nogroup\ --nocolor
+  nnoremap <leader>a :Ag ""<left>
 endif
 
 "============="
