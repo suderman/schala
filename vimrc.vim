@@ -382,22 +382,6 @@ vmap + ]egv
 
 "============="
 
-Source https://github.com/vim-scripts/YankRing.vim
-
-nnoremap <silent> [p :YRShow<cr>
-inoremap <silent> [p <ESC>:YRShow<cr>
-let g:yankring_history_file = '.yankring_history'
-let g:yankring_min_element_length = 2
-let g:yankring_manual_clipboard_check = 1
-
-"============="
-
-Source https://github.com/vim-scripts/ZoomWin
-
-map <Leader>z :ZoomWin<CR>
-
-"============="
-
 Source https://github.com/scrooloose/syntastic
 
 let g:syntastic_enable_signs=1
@@ -436,9 +420,13 @@ Source https://github.com/tpope/vim-bundler
 
 "============="
 
-" Supertab and autocomplete
-Source https://github.com/ervandew/supertab
-let g:SuperTabDefaultCompletionType = "context"
+" " Supertab and autocomplete
+" Source https://github.com/ervandew/supertab
+" let g:SuperTabDefaultCompletionType = "context"
+
+" " YouCompleteMe
+" Source https://github.com/Valloric/YouCompleteMe.git mkdir -p /tmp/ycm && cd /tmp/ycm && cmake -G "Unix Makefiles" . ~/.vim/bundle/YouCompleteMe/cpp && make ycm_core
+" let g:ycm_key_detailed_diagnostics = ';d'
 
 "============="
 
