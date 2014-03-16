@@ -9,21 +9,30 @@ let hostname = substitute(system('hostname'), '\n', '', '')
 let mapleader = ","
 
 " Basic stuff
-set nocompatible
-set mouse=a
 set hidden
-set title
-set visualbell
+set mouse=a                            " allow the mouse to be used
+set visualbell                         " no more beeping from Vim
 set timeoutlen=500
 set scrolloff=0
 set history=1000
+set cursorline                         " highlight current line
+set fillchars=vert:│                   " Solid line for vsplit separator
 
-" Status bar
-set number
+" Status Line
+set laststatus=2                       " always show status line
 set ruler
-set showcmd
-set showmode
-set laststatus=2
+set showcmd                            " show command in bottom bar
+set showmode                           " show what mode (Insert/Normal/Visual) is currently on
+
+Source https://github.com/bling/vim-airline
+let g:airline_left_sep='⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep='⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_symbols = {}
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.linenr = '⭡'
+
 
 " Wild stuff!
 set wildmenu
@@ -468,9 +477,4 @@ let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 
-"======"
-
-" STATUS BAR
-Source https://github.com/Lokaltog/vim-powerline
-let g:Powerline_symbols = 'fancy'
 

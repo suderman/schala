@@ -169,3 +169,13 @@ Source https://gist.github.com/1243665
 Source https://github.com/kana/vim-smartinput
 Source https://github.com/jiangmiao/auto-pairs
 Source https://github.com/tpope/vim-rvm
+
+
+"======"
+
+" STATUS BAR
+Source https://github.com/Lokaltog/vim-powerline
+let g:Powerline_symbols = 'fancy'
+
+"======"
+
