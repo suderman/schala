@@ -266,6 +266,13 @@ nmap <C-g> <ESC>:CtrlP .<CR>
 
 "============="
 
+"============="
+
+" Multiple Cursors
+Source https://github.com/terryma/vim-multiple-cursors
+
+"============="
+
 Source https://github.com/mattn/gist-vim
 
 let g:gist_detect_filetype = 1
