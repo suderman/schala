@@ -232,3 +232,98 @@ Source https://github.com/roman/golden-ratio
 let g:golden_ratio_autocommand = 0
 nmap ;r :GoldenRatioToggle<CR>
 
+" Omni completion popup menu
+"Source https://github.com/spf13/PIV
+"Source https://github.com/vim-scripts/rubycomplete.vim
+highlight Pmenu ctermbg=238 gui=bold
+
+"============="
+" " Supertab and autocomplete
+" Source https://github.com/ervandew/supertab
+" let g:SuperTabDefaultCompletionType = "context"
+
+" Rails
+Source https://github.com/tsaleh/vim-shoulda
+
+" Fancy rails/tmux tdd goodness
+Source https://github.com/kikijump/tslime.vim
+Source https://github.com/jgdavey/vim-turbux
+Source https://github.com/mortice/pbcopy.vim
+
+Source https://github.com/msanders/snipmate.vim
+
+
+command! SearchFile let q = input("Search within this file: ") | exe "/".q."/"
+
+command! SearchReplace let q = input("Search within this file: ") | let r = input("...and replace with this: ") | exe ":%s/".q."/".r."/g"
+nmap <leader>r :SearchReplace<CR>
+
+command! SearchReplaceLast let r = input("Replace last search with this: ") | exe ":%s//".r."/g"
+nmap <leader>rr :SearchReplaceLast<CR>
+
+if executable("ag")
+  command! SearchProject let q = input("Search within this project: ") | exe ":Ag -a ".q
+endif
+
+"============="
+
+Source https://github.com/tpope/vim-haml
+Source https://github.com/tpope/vim-markdown
+Source https://github.com/pangloss/vim-javascript
+Source https://github.com/vim-scripts/VimClojure
+
+" Split shortcuts
+nmap <leader>- :sp<CR>
+nmap <leader>= :vs<CR>
+" nmap <leader>c :close<CR>
+" nmap <leader>cc :tabclose<CR>
+
+Source https://github.com/vim-scripts/ScrollColors
+nmap ;cc :COLORSCROLL<CR>
+
+Source https://github.com/flazz/vim-colorschemes
+Source https://github.com/bzx/vim-theme-pack
+
+Source https://github.com/altercation/vim-colors-solarized
+let g:solarized_contrast="high"
+call togglebg#map(";b")
+
+colorscheme desert256
+set background=dark
+nmap ;c :colorscheme 
+
+"============="
+
+" Visually select the text that was last edited/pasted
+nmap gV `[v`]
+
+"============="
+
+Source https://github.com/mattn/gist-vim
+
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+if has("mac")
+  let g:gist_clip_command = 'pbcopy'
+elseif has("unix")
+  let g:gist_clip_command = 'xclip -selection clipboard'
+endif
+
+
+" When pasting from OS's clipboard, hit ,P command-v ,P
+nnoremap <leader>p :set invpaste paste?<CR>
+set pastetoggle=<leader>p
+
+" 0 is beginning of line, so make - the end of the line
+nmap - $
+
+
+" EasyMotion
+Source https://github.com/Lokaltog/vim-easymotion
+
+let g:EasyMotion_leader_key = ';m'
+
+" <leader>m to easy-motion entire screen. If cancelling,
+" double tap `` to go back to previous cursor position
+nmap <leader>m m`:normal! H<cr>;mw
+

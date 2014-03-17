@@ -26,6 +26,7 @@ set ruler
 set showcmd                            " show command in bottom bar
 set showmode                           " show what mode (Insert/Normal/Visual) is currently on
 
+" Airline Status Line
 Source https://github.com/bling/vim-airline
 let g:airline_left_sep='⮀'
 let g:airline_left_alt_sep = '⮁'
@@ -35,17 +36,13 @@ let g:airline_symbols = {}
 let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.linenr = '⭡'
 
-
 " Wild stuff!
 set wildmenu                           " visual autocomplete for command menu
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,*/public_html/images/**,*/public_html/upload/**,*/public/images/**,*/public/upload/**,./var/**,*/uploads/**,*/pear/**,*/build/**
 
-" Encoding
-set encoding=utf-8
-" set bomb
-
 " Whitespace
+set encoding=utf-8
 set nowrap
 set tabstop=2                           " number of visual spaces per tab
 set softtabstop=2                       " number of spaces in tab when editing
@@ -53,10 +50,19 @@ set expandtab                           " tabs are spaces!
 set shiftwidth=2                        " how many spaces to indent/outdent
 set list listchars=tab:\ \ ,trail:·
 set backspace=indent,eol,start
+" F5 will remove trailing whitespace and tabs
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
 
 " Use modeline overrides
 set modeline
 set modelines=10
+
+" Colors
+Source https://github.com/bzx/vim-theme-pack
+" Source https://github.com/flazz/vim-colorschemes
+set t_Co=256
+set background=dark
+colorscheme default
 
 " Directories for swp files
 set backupdir=~/.vim/backup
@@ -66,13 +72,6 @@ set nowritebackup
 
 " Remember last location in file
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-
-" Visually select the text that was last edited/pasted
-nmap gV `[v`]
-
-
-" 0 is beginning of line, so make - the end of the line
-nmap - $
 
 " Visual shifting (builtin-repeat)
 vmap < <gv
@@ -88,18 +87,10 @@ set hidden       " allow unsaved buffers to be hidden
 set autoread      " Set to auto read when a file is changed from the outside
 " set autowriteall  " Automatically save buffers
 
-" Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-set gdefault
-
-" Clear search with comma-space
-noremap <leader><space> :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
-
-" F5 will remove trailing whitespace and tabs
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
+" ,u will show undo history graph
+Source https://github.com/sjl/gundo.vim
+nnoremap <leader>u :GundoToggle<CR>
+let g:gundo_right = 1
 
 " Redraw shortcut
 noremap <C-m> <Esc>:redraw!<CR>
@@ -115,10 +106,6 @@ nnoremap <leader><leader> <c-^>
 nmap <leader>6 <C-^>
 nmap <leader>^ <C-^>
 
-" When pasting from OS's clipboard, hit ,P command-v ,P
-nnoremap <leader>p :set invpaste paste?<CR>
-set pastetoggle=<leader>p
-
 " Use OS X clipboard
 set clipboard=unnamed
 
@@ -128,215 +115,10 @@ nnoremap Y y$
 " sudo & write if you forget to sudo first
 cmap w!! w !sudo tee % >/dev/null
 
-" Launch vimrc with ,v
-nmap <leader>v :EditVimRC<CR>
-command! EditVimRC call s:EditVimRC()
-function! s:EditVimRC()
-  let l:title = expand("%:t")
-  if (l:title == '.vimrc')
-    :edit ~/.gvimrc
-  else
-    :edit ~/.vimrc
-  endif
-endfunction
-
-"============="
-
-command! SearchFile let q = input("Search within this file: ") | exe "/".q."/"
-
-command! SearchReplace let q = input("Search within this file: ") | let r = input("...and replace with this: ") | exe ":%s/".q."/".r."/g"
-nmap <leader>r :SearchReplace<CR>
-
-command! SearchReplaceLast let r = input("Replace last search with this: ") | exe ":%s//".r."/g"
-nmap <leader>rr :SearchReplaceLast<CR>
-
-if executable("ag")
-  command! SearchProject let q = input("Search within this project: ") | exe ":Ag -a ".q
-endif
-
-"============="
-
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<CR>
-
-" Move to the next misspelled word
-map <leader>sn ]s
-
-" Move to the previous misspelled word
-map <leader>sp [s
-
-" Add word to dictionary
-map <leader>sa zg
-
-" View spelling suggestions for misspelled word
-map <leader>s? z=
-
-"============="
-
-" Ag - The Silver Searcher
-Source https://github.com/rking/ag.vim
-
-" Use Ag instead of Grep when available
-if executable("ag")
-  set grepprg=ag\ -H\ --nogroup\ --nocolor
-  nnoremap <leader>a :Ag ""<left>
-endif
-
-"============="
-
-Source https://github.com/vim-scripts/bufexplorer.zip
-
-command! Buffers call s:Buffers()
-function! s:Buffers()
-  let l:title = expand("%:t")
-  if (l:title == '[BufExplorer]')
-    :b#
-  else
-    :silent BufExplorer
-  endif
-endfunction
-
-nmap <S-k> :Buffers<CR>
-
-"============="
-set t_Co=256
-
-Source https://github.com/vim-scripts/ScrollColors
-nmap ;cc :COLORSCROLL<CR>
-
-Source https://github.com/bzx/vim-theme-pack
-
-Source https://github.com/altercation/vim-colors-solarized
-let g:solarized_contrast="high"
-call togglebg#map(";b")
-
-colorscheme desert256
-set background=dark
-nmap ;c :colorscheme 
-
-"============="
-
-" CtrlP
-Source https://github.com/kien/ctrlp.vim
-
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_map = ''
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
-  \ }
-imap <C-g> <ESC>:CtrlP .<CR>
-vmap <C-g> <ESC>:CtrlP .<CR>
-nmap <C-g> <ESC>:CtrlP .<CR>
-
-"============="
-
-" Unite, VimShell, VimFiler
-Source https://github.com/Shougo/vimproc.vim cd ~/.vim/bundle/vimproc.vim && make
-Source https://github.com/Shougo/unite.vim
-Source https://github.com/Shougo/neomru.vim
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#set_profile('files', 'smartcase', 1)
-call unite#custom#source('line,outline','matchers','matcher_fuzzy')
-
-let g:unite_data_directory='~/.vim/.cache/unite'
-let g:unite_enable_start_insert=1
-let g:unite_source_history_yank_enable=1
-let g:unite_source_rec_max_cache_files=5000
-let g:unite_prompt='» '
-
-if executable('ag')
-  let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
-  let g:unite_source_grep_recursive_opt=''
-elseif executable('ack')
-  let g:unite_source_grep_command='ack'
-  let g:unite_source_grep_default_opts='--no-heading --no-color -a -C4'
-  let g:unite_source_grep_recursive_opt=''
-endif
-
-function! s:unite_settings()
-  nmap <buffer> Q <plug>(unite_exit)
-  nmap <buffer> <esc> <plug>(unite_exit)
-  imap <buffer> <esc> <plug>(unite_exit)
-endfunction
-autocmd FileType unite call s:unite_settings()
-
-nmap <space> [unite]
-nnoremap [unite] <nop>
-
-nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
-nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
-nnoremap <silent> [unite]e :<C-u>Unite -buffer-name=recent file_mru<cr>
-nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
-nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
-nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
-nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
-
-Source https://github.com/osyo-manga/unite-airline_themes
-nnoremap <silent> [unite]a :<C-u>Unite -winheight=10 -auto-preview -buffer-name=airline_themes airline_themes<cr>
-
-Source https://github.com/ujihisa/unite-colorscheme
-nnoremap <silent> [unite]c :<C-u>Unite -winheight=10 -auto-preview -buffer-name=colorschemes colorscheme<cr>
-
-Source https://github.com/tsukkee/unite-tag
-nnoremap <silent> [unite]t :<C-u>Unite -auto-resize -buffer-name=tag tag tag/file<cr>
-
-Source https://github.com/Shougo/unite-outline
-nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
-
-Source https://github.com/Shougo/unite-help
-nnoremap <silent> [unite]h :<C-u>Unite -auto-resize -buffer-name=help help<cr>
-
-Source https://github.com/Shougo/junkfile.vim
-let g:junkfile#directory=expand("~/.vim/.cache/junk")
-nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
-
-"============="
-
-Source https://github.com/Shougo/vimshell.vim
-if has('gui_macvim')
-  let g:vimshell_editor_command='mvim'
-else
-  let g:vimshell_editor_command='vim'
-endif
-let g:vimshell_right_prompt='getcwd()'
-let g:vimshell_data_directory='~/.vim/.cache/vimshell'
-let g:vimshell_vimshrc_path='~/.vim/vimshrc'
-
-nnoremap <leader>c :VimShell -split<cr>
-nnoremap <leader>cc :VimShell -split<cr>
-nnoremap <leader>cn :VimShellInteractive node<cr>
-nnoremap <leader>cl :VimShellInteractive lua<cr>
-nnoremap <leader>cr :VimShellInteractive irb<cr>
-nnoremap <leader>cp :VimShellInteractive python<cr>
-
-"============="
-
-Source https://github.com/Shougo/vimfiler.vim
-" let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_safe_mode_by_default=0
-let g:vimfiler_quick_look_command = 'qlmanage -p'
-let g:vimfiler_tree_leaf_icon = ' '
-let g:vimfiler_tree_opened_icon = '▾'
-let g:vimfiler_tree_closed_icon = '▸'
-let g:vimfiler_file_icon = '-'
-let g:vimfiler_marked_file_icon = '*'
-
 "============="
 
 " Let split windows be different sizes
 set noequalalways
-
-" Split shortcuts
-nmap <leader>- :sp<CR>
-nmap <leader>= :vs<CR>
-" nmap <leader>c :close<CR>
-" nmap <leader>cc :tabclose<CR>
 
 " Smart way to move between windows. Ctrl-[h,j,k,l]
 nmap <C-j> <C-W>j
@@ -370,25 +152,180 @@ cmap <C-v> <C-R>"
 " Multiple Cursors
 Source https://github.com/terryma/vim-multiple-cursors
 
+
+"============="
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<CR>
+
+" Move to the next misspelled word
+map <leader>sn ]s
+
+" Move to the previous misspelled word
+map <leader>sp [s
+
+" Add word to dictionary
+map <leader>sa zg
+
+" View spelling suggestions for misspelled word
+map <leader>s? z=
+
 "============="
 
-Source https://github.com/mattn/gist-vim
+" Searching
+" -----------------------------
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set gdefault
 
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
-if has("mac")
-  let g:gist_clip_command = 'pbcopy'
-elseif has("unix")
-  let g:gist_clip_command = 'xclip -selection clipboard'
+" Shows what match number/total we're at when searching
+Source https://github.com/vim-scripts/IndexedSearch
+
+" Clear search with comma-space
+noremap <leader><space> :noh<CR>:match none<CR>:2match none<CR>:3match none<CR>
+
+" Ag - The Silver Searcher
+Source https://github.com/rking/ag.vim
+
+" Use Ag instead of Grep when available
+if executable("ag")
+  set grepprg=ag\ -H\ --nogroup\ --nocolor
+  nnoremap <leader>a :Ag ""<left>
 endif
 
 "============="
 
-Source https://github.com/sjl/gundo.vim
+Source https://github.com/vim-scripts/bufexplorer.zip
 
-" ,u will show undo history graph
-nnoremap <leader>u :GundoToggle<CR>
-let g:gundo_right = 1
+command! Buffers call s:Buffers()
+function! s:Buffers()
+  let l:title = expand("%:t")
+  if (l:title == '[BufExplorer]')
+    :b#
+  else
+    :silent BufExplorer
+  endif
+endfunction
+
+nmap <S-k> :Buffers<CR>
+
+
+" CtrlP
+Source https://github.com/kien/ctrlp.vim
+
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+let g:ctrlp_map = ''
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
+  \ }
+imap <C-g> <ESC>:CtrlP .<CR>
+vmap <C-g> <ESC>:CtrlP .<CR>
+nmap <C-g> <ESC>:CtrlP .<CR>
+
+"============="
+
+" Unite & Unite-related Plugins
+" -----------------------------
+
+" VimProc for async magic
+Source https://github.com/Shougo/vimproc.vim cd ~/.vim/bundle/vimproc.vim && make
+
+" Unite
+Source https://github.com/Shougo/unite.vim
+Source https://github.com/Shougo/neomru.vim
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#set_profile('files', 'smartcase', 1)
+call unite#custom#source('line,outline','matchers','matcher_fuzzy')
+
+let g:unite_data_directory='~/.vim/.cache/unite'
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable=1
+let g:unite_source_rec_max_cache_files=5000
+let g:unite_prompt='» '
+" let g:unite_winheight = 10
+let g:unite_split_rule = 'botright'
+
+" Ag searching
+let g:unite_source_grep_command='ag'
+let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+let g:unite_source_grep_recursive_opt=''
+
+function! s:unite_settings()
+  nmap <buffer> Q <plug>(unite_exit)
+  nmap <buffer> <esc> <plug>(unite_exit)
+  imap <buffer> <esc> <plug>(unite_exit)
+  nmap <buffer> <C-s> <Plug>(unite_redraw)
+  imap <buffer> <C-s> <Plug>(unite_redraw)
+endfunction
+autocmd FileType unite call s:unite_settings()
+
+" Unite mappings
+nmap <space> [unite]
+nnoremap [unite] <nop>
+
+nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
+nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
+nnoremap <silent> [unite]e :<C-u>Unite -buffer-name=recent file_mru<cr>
+nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
+nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
+nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
+nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
+nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
+nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+
+Source https://github.com/osyo-manga/unite-airline_themes
+nnoremap <silent> [unite]a :<C-u>Unite -winheight=10 -auto-preview -buffer-name=airline_themes airline_themes<cr>
+
+Source https://github.com/ujihisa/unite-colorscheme
+nnoremap <silent> [unite]c :<C-u>Unite -winheight=10 -auto-preview -buffer-name=colorschemes colorscheme<cr>
+
+Source https://github.com/tsukkee/unite-tag
+nnoremap <silent> [unite]t :<C-u>Unite -auto-resize -buffer-name=tag tag tag/file<cr>
+
+Source https://github.com/Shougo/unite-outline
+nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
+
+Source https://github.com/Shougo/unite-help
+nnoremap <silent> [unite]h :<C-u>Unite -auto-resize -buffer-name=help help<cr>
+
+Source https://github.com/Shougo/junkfile.vim
+let g:junkfile#directory=expand("~/.vim/.cache/junk")
+nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
+
+
+" VimShell
+Source https://github.com/Shougo/vimshell.vim
+if has('gui_macvim')
+  let g:vimshell_editor_command='mvim'
+else
+  let g:vimshell_editor_command='vim'
+endif
+let g:vimshell_right_prompt='getcwd()'
+let g:vimshell_data_directory='~/.vim/.cache/vimshell'
+let g:vimshell_vimshrc_path='~/.vim/vimshrc'
+
+nnoremap <leader>c :VimShell -split<cr>
+nnoremap <leader>cc :VimShell -split<cr>
+nnoremap <leader>cn :VimShellInteractive node<cr>
+nnoremap <leader>cl :VimShellInteractive lua<cr>
+nnoremap <leader>cr :VimShellInteractive irb<cr>
+nnoremap <leader>cp :VimShellInteractive python<cr>
+
+
+" VimFiler
+Source https://github.com/Shougo/vimfiler.vim
+" let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default=0
+let g:vimfiler_quick_look_command = 'qlmanage -p'
+let g:vimfiler_tree_leaf_icon = ' '
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = '-'
+let g:vimfiler_marked_file_icon = '*'
 
 "============="
 
@@ -416,130 +353,81 @@ nmap <leader>w :w<CR>
 "============="
 
 runtime! macros/matchit.vim
-" nmap <Space> %
-Source https://github.com/Valloric/MatchTagAlways.git
 
 "============="
 
-Source https://github.com/Lokaltog/vim-easymotion
-
-let g:EasyMotion_leader_key = ';m'
-
-" <leader>m to easy-motion entire screen. If cancelling,
-" double tap `` to go back to previous cursor position
-nmap <leader>m m`:normal! H<cr>;mw
-
+Source https://github.com/justinmk/vim-sneak
+let g:sneak#streak = 0
+" nmap <C-s> <Plug>Sneak_s
+" nmap <C-S> <Plug>Sneak_S
 
 "============="
 
-Source https://github.com/vim-scripts/jade.vim
-Source https://github.com/vim-scripts/jQuery
-Source https://github.com/tpope/vim-haml
-Source https://github.com/pangloss/vim-javascript
-Source https://github.com/tpope/vim-markdown
-
-Source https://github.com/othree/html5.vim
-Source https://github.com/theprivileges/smarty.vim
-au BufNewFile,BufReadPost *.html set ft=smarty
-
-" special filetype syntax coloring
-au Bufread,BufNewFile {ssh-config} set ft=sshconfig
-au Bufread,BufNewFile {.rvmrc,rvmrc} set ft=sh
-au Bufread,BufNewFile {.gitconfig,gitconfig} set ft=gitconfig
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Capfile,config.ru} set ft=ruby
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set wrap | set wrapmargin=2 | set textwidth=72
-
-Source https://github.com/ervandew/supertab
-highlight Pmenu ctermbg=238 gui=bold
-" make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-au FileType python  set tabstop=4 textwidth=79
-
-Source https://github.com/kchmck/vim-coffee-script
-au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable | set ft=coffee
-
-Source https://github.com/lchi/vim-toffee
-au BufNewFile,BufReadPost *.toffee set ft=toffee
-
-Source https://github.com/skammer/vim-css-color
-Source https://github.com/hail2u/vim-css3-syntax
-Source https://github.com/groenewege/vim-less
-au BufNewFile,BufReadPost *.less set ft=less
-
-Source https://github.com/vim-scripts/VimClojure
-
-nmap _js :setfiletype javascript<CR>
-nmap _rb :setfiletype ruby<CR>
-nmap _vi :setfiletype vim<CR>
-nmap _ph :setfiletype php<CR>
-nmap _sh :setfiletype sh<CR>
-nmap _cs :setfiletype css<CR>
-nmap _co :setfiletype coffee<CR>
-nmap _sm :setfiletype smarty<CR>
-nmap _md :setfiletype markdown<CR>
-nmap _hm :setfiletype haml<CR>
-
-"============="
-
+" Unimpaired - see all mappings at :help unimpaired
 Source https://github.com/tpope/vim-unimpaired
-
-" Bubble multiple lines
+" cob bgcolor cow softwrap, coc cursorline, cou cursorcolumn, con number, cor relativenumber
+" yp yP yo YO yI YA paste with paste toggled on
+" []x encode xml, []u encode url, []y encode C string
+" []b buffers, []f files, []<Space> blank lines
+" []e bubble multiple lines, visual mode mappings below:
 vmap _ [egv
 vmap + ]egv
 
 "============="
 
+" Show Syntax Errors
 Source https://github.com/scrooloose/syntastic
-
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 
+" Highlight matching tags while inside
+Source https://github.com/Valloric/MatchTagAlways.git
+
 "============="
 
+" Ruby Helpers
 Source https://github.com/tpope/vim-rails
-Source https://github.com/tsaleh/vim-shoulda
-
-" Fancy rails/tmux tdd goodness
-Source https://github.com/kikijump/tslime.vim
-Source https://github.com/jgdavey/vim-turbux
-
-"============="
-
-" Auto-close parenthesis and quotes
-Source https://github.com/Raimondi/delimitMate
-
-"============="
-
-Source https://github.com/tpope/vim-endwise
-Source https://github.com/msanders/snipmate.vim
-Source https://github.com/tomtom/tcomment_vim
-Source https://github.com/tpope/vim-fugitive
-Source https://github.com/tpope/vim-git
-Source https://github.com/tpope/vim-surround
-Source https://github.com/tpope/vim-unimpaired
-Source https://github.com/tpope/vim-repeat
-Source https://github.com/tsaleh/vim-align
-Source https://github.com/vim-scripts/camelcasemotion
-Source https://github.com/vim-scripts/IndexedSearch
-Source https://github.com/airblade/vim-rooter
-Source https://github.com/mortice/pbcopy.vim
+Source https://github.com/tpope/vim-rake
 Source https://github.com/tpope/vim-bundler
 
 "============="
 
-" " Supertab and autocomplete
-" Source https://github.com/ervandew/supertab
-" let g:SuperTabDefaultCompletionType = "context"
 
-" " YouCompleteMe
-" Source https://github.com/Valloric/YouCompleteMe.git mkdir -p /tmp/ycm && cd /tmp/ycm && cmake -G "Unix Makefiles" . ~/.vim/bundle/YouCompleteMe/cpp && make ycm_core
-" let g:ycm_key_detailed_diagnostics = ';d'
+" Auto-close parenthesis and quotes
+Source https://github.com/Raimondi/delimitMate
+
+" Auto-close functions, loops, ifs, etc
+Source https://github.com/tpope/vim-endwise
+
+" Comment code with gc
+Source https://github.com/tomtom/tcomment_vim
 
 "============="
 
-" Omni completion popup menu
-"Source https://github.com/spf13/PIV
-"Source https://github.com/vim-scripts/rubycomplete.vim
-highlight Pmenu ctermbg=238 gui=bold
+" Git wrapper
+Source https://github.com/tpope/vim-git
+Source https://github.com/tpope/vim-fugitive
+
+" Change working directory to root when a project is dectected (triggered when opening a file)
+Source https://github.com/airblade/vim-rooter
+
+" Surround ys" cs"<div> dst, or visual mode with S, . to repeat
+Source https://github.com/tpope/vim-surround
+Source https://github.com/tpope/vim-repeat
+
+" Quickly align text all nice-like, shortcut with <C-a> in visual mode
+Source https://github.com/tsaleh/vim-align
+vnoremap <C-a> :Align 
+
+" Prepend , to w b e motions to respect camelCase, hyphen and underscore words
+Source https://github.com/bkad/CamelCaseMotion
+
+
+
+"============="
+
+" YouCompleteMe
+Source https://github.com/Valloric/YouCompleteMe git submodule update --init --recursive; ./install.sh
 
 "============="
 
@@ -553,4 +441,80 @@ let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
 
+"============="
 
+" Filetypes and Syntax
+"---------------------
+
+" HTML5
+Source https://github.com/othree/html5.vim
+
+" Smarty
+Source https://github.com/theprivileges/smarty.vim
+au BufNewFile,BufReadPost *.html set ft=smarty
+
+" Jade
+Source https://github.com/vim-scripts/jade.vim
+
+" CoffeeScript
+Source https://github.com/kchmck/vim-coffee-script
+au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable | set ft=coffee
+
+" Toffee
+Source https://github.com/lchi/vim-toffee
+au BufNewFile,BufReadPost *.toffee set ft=toffee
+
+" jQuery
+Source https://github.com/vim-scripts/jQuery
+
+" CSS
+Source https://github.com/skammer/vim-css-color
+Source https://github.com/hail2u/vim-css3-syntax
+
+" LESS
+Source https://github.com/groenewege/vim-less
+au BufNewFile,BufReadPost *.less set ft=less
+
+" .ssh/config
+au Bufread,BufNewFile {ssh-config} set ft=sshconfig
+
+" .ruby-version
+au Bufread,BufNewFile {.rvmrc,rvmrc,.ruby-version,ruby-version} set ft=sh
+
+" .gitconfig
+au Bufread,BufNewFile {.gitconfig,gitconfig} set ft=gitconfig
+
+" Ruby special files
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Capfile,config.ru} set ft=ruby
+
+" Markdown
+au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} set wrap | set wrapmargin=2 | set textwidth=72
+
+" Python
+au FileType python  set tabstop=4 textwidth=79
+
+" Filetype mappings
+nmap _vi :setfiletype vim<CR>
+nmap _js :setfiletype javascript<CR>
+nmap _rb :setfiletype ruby<CR>
+nmap _ph :setfiletype php<CR>
+nmap _sh :setfiletype sh<CR>
+nmap _co :setfiletype coffee<CR>
+nmap _cs :setfiletype css<CR>
+nmap _le :setfiletype less<CR>
+nmap _sm :setfiletype smarty<CR>
+nmap _md :setfiletype markdown<CR>
+nmap _hm :setfiletype haml<CR>
+
+
+" Launch vimrc with ,v
+nmap <leader>v :EditVimRC<CR>
+command! EditVimRC call s:EditVimRC()
+function! s:EditVimRC()
+  let l:title = expand("%:t")
+  if (l:title == '.vimrc')
+    :edit ~/.gvimrc
+  else
+    :edit ~/.vimrc
+  endif
+endfunction
