@@ -70,41 +70,6 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'
 " Visually select the text that was last edited/pasted
 nmap gV `[v`]
 
-" Let split windows be different sizes
-set noequalalways
-
-" Split shortcuts
-nmap <leader>- :sp<CR>
-nmap <leader>= :vs<CR>
-nmap <leader>c :close<CR>
-nmap <leader>cc :tabclose<CR>
-
-" Smart way to move between windows. Ctrl-[h,j,k,l]
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
-
-" If in Visual Mode, resize window instead of changing focus. Ctrl-[h,j,k,l]
-vmap <C-j> <C-W>+
-vmap <C-k> <C-W>-
-vmap <C-h> <C-W><
-vmap <C-l> <C-W>>
-
-" Let directional keys work in Insert Mode. Ctrl-[h,j,k,l]
-imap <C-j> <Down>
-imap <C-k> <Up>
-imap <C-h> <Left>
-imap <C-l> <Right>
-
-" Cursor movement in command mode
-cmap <C-j> <Down>
-cmap <C-k> <Up>
-cmap <C-h> <Left>
-cmap <C-l> <Right>
-cmap <C-x> <Del>
-cmap <C-z> <BS>
-cmap <C-v> <C-R>"
 
 " 0 is beginning of line, so make - the end of the line
 nmap - $
@@ -270,8 +235,6 @@ nmap <C-g> <ESC>:CtrlP .<CR>
 Source https://github.com/Shougo/vimproc.vim cd ~/.vim/bundle/vimproc.vim && make
 Source https://github.com/Shougo/unite.vim
 Source https://github.com/Shougo/neomru.vim
-Source https://github.com/Shougo/vimshell.vim
-Source https://github.com/Shougo/vimfiler.vim
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
@@ -332,6 +295,75 @@ nnoremap <silent> [unite]h :<C-u>Unite -auto-resize -buffer-name=help help<cr>
 Source https://github.com/Shougo/junkfile.vim
 let g:junkfile#directory=expand("~/.vim/.cache/junk")
 nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
+
+"============="
+
+Source https://github.com/Shougo/vimshell.vim
+if has('gui_macvim')
+  let g:vimshell_editor_command='mvim'
+else
+  let g:vimshell_editor_command='vim'
+endif
+let g:vimshell_right_prompt='getcwd()'
+let g:vimshell_data_directory='~/.vim/.cache/vimshell'
+let g:vimshell_vimshrc_path='~/.vim/vimshrc'
+
+nnoremap <leader>c :VimShell -split<cr>
+nnoremap <leader>cc :VimShell -split<cr>
+nnoremap <leader>cn :VimShellInteractive node<cr>
+nnoremap <leader>cl :VimShellInteractive lua<cr>
+nnoremap <leader>cr :VimShellInteractive irb<cr>
+nnoremap <leader>cp :VimShellInteractive python<cr>
+
+"============="
+
+Source https://github.com/Shougo/vimfiler.vim
+" let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default=0
+let g:vimfiler_quick_look_command = 'qlmanage -p'
+let g:vimfiler_tree_leaf_icon = ' '
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▸'
+let g:vimfiler_file_icon = '-'
+let g:vimfiler_marked_file_icon = '*'
+
+"============="
+
+" Let split windows be different sizes
+set noequalalways
+
+" Split shortcuts
+nmap <leader>- :sp<CR>
+nmap <leader>= :vs<CR>
+" nmap <leader>c :close<CR>
+" nmap <leader>cc :tabclose<CR>
+
+" Smart way to move between windows. Ctrl-[h,j,k,l]
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
+
+" If in Visual Mode, resize window instead of changing focus. Ctrl-[h,j,k,l]
+vmap <C-j> <C-W>+
+vmap <C-k> <C-W>-
+vmap <C-h> <C-W><
+vmap <C-l> <C-W>>
+
+" Let directional keys work in Insert Mode. Ctrl-[h,j,k,l]
+imap <C-j> <Down>
+imap <C-k> <Up>
+imap <C-h> <Left>
+imap <C-l> <Right>
+
+" Cursor movement in command mode
+cmap <C-j> <Down>
+cmap <C-k> <Up>
+cmap <C-h> <Left>
+cmap <C-l> <Right>
+cmap <C-x> <Del>
+cmap <C-z> <BS>
+cmap <C-v> <C-R>"
 
 "============="
 
