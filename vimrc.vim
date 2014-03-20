@@ -59,7 +59,6 @@ set modelines=10
 
 " Colors
 Source https://github.com/bzx/vim-theme-pack
-" Source https://github.com/flazz/vim-colorschemes
 set t_Co=256
 set background=dark
 colorscheme default
