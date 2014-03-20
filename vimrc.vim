@@ -506,6 +506,8 @@ nmap _sm :setfiletype smarty<CR>
 nmap _md :setfiletype markdown<CR>
 nmap _hm :setfiletype haml<CR>
 
+" :Man pages in Vim
+runtime! ftplugin/man.vim
 
 " Launch vimrc with ,v
 nmap <leader>v :EditVimRC<CR>
