@@ -230,7 +230,7 @@ nmap <C-g> <ESC>:CtrlP .<CR>
 " -----------------------------
 
 " VimProc for async magic
-Source https://github.com/Shougo/vimproc.vim cd ~/.vim/bundle/vimproc.vim && make
+Source https://github.com/Shougo/vimproc.vim make
 
 " Unite
 Source https://github.com/Shougo/unite.vim
@@ -272,10 +272,10 @@ nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files f
 nnoremap <silent> [unite]e :<C-u>Unite -buffer-name=recent file_mru<cr>
 nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
 nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
 nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
 nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
 nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+nnoremap <silent> [unite]b :<C-u>Unite -no-split -no-start-insert -buffer-name=buffers buffer<cr>
 
 Source https://github.com/osyo-manga/unite-airline_themes
 nnoremap <silent> [unite]a :<C-u>Unite -winheight=10 -auto-preview -buffer-name=airline_themes airline_themes<cr>
