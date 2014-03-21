@@ -315,16 +315,17 @@ nnoremap <leader>cr :VimShellInteractive irb<cr>
 nnoremap <leader>cp :VimShellInteractive python<cr>
 
 
-" VimFiler
-Source https://github.com/Shougo/vimfiler.vim
-" let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_safe_mode_by_default=0
-let g:vimfiler_quick_look_command = 'qlmanage -p'
-let g:vimfiler_tree_leaf_icon = ' '
-let g:vimfiler_tree_opened_icon = '▾'
-let g:vimfiler_tree_closed_icon = '▸'
-let g:vimfiler_file_icon = '-'
-let g:vimfiler_marked_file_icon = '*'
+" This plugin overwrites my Source command! Bad plugin.
+" " VimFiler
+" Source https://github.com/Shougo/vimfiler.vim
+" " let g:vimfiler_as_default_explorer = 1
+" let g:vimfiler_safe_mode_by_default=0
+" let g:vimfiler_quick_look_command = 'qlmanage -p'
+" let g:vimfiler_tree_leaf_icon = ' '
+" let g:vimfiler_tree_opened_icon = '▾'
+" let g:vimfiler_tree_closed_icon = '▸'
+" let g:vimfiler_file_icon = '-'
+" let g:vimfiler_marked_file_icon = '*'
 
 "============="
 
@@ -421,7 +422,6 @@ vnoremap <C-a> :Align
 
 " Prepend , to w b e motions to respect camelCase, hyphen and underscore words
 Source https://github.com/bkad/CamelCaseMotion
-
 
 "============="
 
