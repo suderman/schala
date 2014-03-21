@@ -19,3 +19,4 @@ if [ ! -d "$HOME/.vim/source.vim" ]; then
 fi
 ln -sfn "$HOME/.vim/source.vim/plugin/source.vim" "$HOME/.vim/plugin/source.vim"
 echo "Installed source.vim"
+
