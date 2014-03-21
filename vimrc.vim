@@ -406,6 +406,7 @@ Source https://github.com/tomtom/tcomment_vim
 " Git wrapper
 Source https://github.com/tpope/vim-git
 Source https://github.com/tpope/vim-fugitive
+Source https://github.com/gregsexton/gitv
 
 " Change working directory to root when a project is dectected (triggered when opening a file)
 Source https://github.com/airblade/vim-rooter
@@ -422,10 +423,9 @@ vnoremap <C-a> :Align
 Source https://github.com/bkad/CamelCaseMotion
 
 
-
 "============="
 
-" YouCompleteMe
+" YouCompleteMe autocomplete
 Source https://github.com/Valloric/YouCompleteMe git submodule update --init --recursive; ./install.sh
 
 "============="
