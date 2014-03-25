@@ -58,8 +58,8 @@ set modeline
 set modelines=10
 
 " Colors
-Source https://github.com/bzx/vim-theme-pack
-Source https://github.com/ndzou/vim-colorschemes
+" Source https://github.com/bzx/vim-theme-pack
+" Source https://github.com/ndzou/vim-colorschemes
 set t_Co=256
 colorscheme default
 
