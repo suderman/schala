@@ -23,10 +23,10 @@ set timeoutlen=500
 
 " Airline Status Line
 Source https://github.com/bling/vim-airline
-let g:airline_left_sep='⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep='⮂'
-let g:airline_right_alt_sep = '⮃'
+let g:airline_left_sep='' "⮀
+let g:airline_left_alt_sep = '' "⮁
+let g:airline_right_sep='' "⮂
+let g:airline_right_alt_sep = '' "⮃
 let g:airline_symbols = {}
 let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.linenr = '⭡'
@@ -50,10 +50,22 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:
 set modeline
 set modelines=10
 
+" Fix popmenu with :Pmenu or <space>p if it's unreadable (bad colorscheme!)
+command! Pmenu call s:Pmenu()
+function! s:Pmenu()
+  highlight Pmenu      ctermfg=white ctermbg=darkgray guifg=white    guibg=gray40
+  highlight PmenuSel   ctermfg=white ctermbg=black    guifg=white    guibg=black
+  highlight PmenuSbar                                 guifg=white    guibg=gray40
+  highlight PmenuThumb                                guifg=#c0c0c0
+endfunction
+nnoremap <silent> <space>p :Pmenu<CR>
+
 " Colors
 " Source https://github.com/bzx/vim-theme-pack
 " Source https://github.com/ndzou/vim-colorschemes
-colorscheme default
+colorscheme railscasts
+call s:Pmenu()
+
 
 " Directories for swp files
 set backupdir=~/.vim/backup
@@ -110,11 +122,8 @@ cmap w!! w !sudo tee % >/dev/null
 " Let split windows be different sizes
 set noequalalways
 
-" Smart way to move between windows. Ctrl-[h,j,k,l]
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
+" Tmux Navigator - Smart way to move between splits. Ctrl-[h,j,k,l]
+Source https://github.com/christoomey/vim-tmux-navigator
 
 " If in Visual Mode, resize window instead of changing focus. Ctrl-[h,j,k,l]
 vmap <C-j> <C-W>+
@@ -138,6 +147,7 @@ cmap <C-z> <BS>
 cmap <C-v> <C-R>"
 
 "============="
+
 
 " Multiple Cursors
 Source https://github.com/terryma/vim-multiple-cursors
@@ -416,7 +426,7 @@ Source https://github.com/bkad/CamelCaseMotion
 "============="
 
 " YouCompleteMe autocomplete
-Source https://github.com/Valloric/YouCompleteMe git submodule update --init --recursive; ./install.sh
+" Source https://github.com/Valloric/YouCompleteMe git submodule update --init --recursive; ./install.sh
 
 "============="
 

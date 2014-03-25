@@ -327,3 +327,9 @@ let g:EasyMotion_leader_key = ';m'
 " double tap `` to go back to previous cursor position
 nmap <leader>m m`:normal! H<cr>;mw
 
+" Smart way to move between windows. Ctrl-[h,j,k,l]
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
+
