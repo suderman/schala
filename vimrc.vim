@@ -407,6 +407,11 @@ Source https://github.com/tomtom/tcomment_vim
 " Git wrapper
 Source https://github.com/tpope/vim-git
 Source https://github.com/tpope/vim-fugitive
+autocmd BufReadPost fugitive://* set bufhidden=delete
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
 Source https://github.com/gregsexton/gitv
 
 " Change working directory to root when a project is dectected (triggered when opening a file)
