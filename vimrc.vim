@@ -8,23 +8,18 @@ let hostname = substitute(system('hostname'), '\n', '', '')
 " Comma is the leader character
 let mapleader = ","
 
+" Sensible settings
+Source https://github.com/tpope/vim-sensible
+
 " Basic stuff
-set nocompatible                       " allow editor to be Vim instead of Vi
 set mouse=a                            " allow the mouse to be used
 set title                              " set the window's title to the current filename
 set visualbell                         " no more beeping from Vim
-set timeoutlen=500
-set scrolloff=0
-set history=1000
 set number                             " show line numbers
 set cursorline                         " highlight current line
 set fillchars=vert:│                   " Solid line for vsplit separator
-
-" Status Line
-set laststatus=2                       " always show status line
-set ruler
-set showcmd                            " show command in bottom bar
 set showmode                           " show what mode (Insert/Normal/Visual) is currently on
+set timeoutlen=500
 
 " Airline Status Line
 Source https://github.com/bling/vim-airline
@@ -42,14 +37,12 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,*.pyc,*.rbc,*.class,.svn,test/fixtures/*,vendor/gems/*,*.DS_STORE,*.db,*.swc,*.tar,*.tgz,.git,*/public_html/images/**,*/public_html/upload/**,*/public/images/**,*/public/upload/**,./var/**,*/uploads/**,*/pear/**,*/build/**
 
 " Whitespace
-set encoding=utf-8
 set nowrap
 set tabstop=2                           " number of visual spaces per tab
 set softtabstop=2                       " number of spaces in tab when editing
 set expandtab                           " tabs are spaces!
 set shiftwidth=2                        " how many spaces to indent/outdent
-set list listchars=tab:\ \ ,trail:·
-set backspace=indent,eol,start
+
 " F5 will remove trailing whitespace and tabs
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>:retab<CR>
 
@@ -60,7 +53,6 @@ set modelines=10
 " Colors
 " Source https://github.com/bzx/vim-theme-pack
 " Source https://github.com/ndzou/vim-colorschemes
-set t_Co=256
 colorscheme default
 
 " Directories for swp files
@@ -83,7 +75,6 @@ set virtualedit+=onemore
 
 " Hide buffers or auto-save?
 set hidden       " allow unsaved buffers to be hidden
-set autoread      " Set to auto read when a file is changed from the outside
 " set autowriteall  " Automatically save buffers
 
 " ,u will show undo history graph
@@ -173,7 +164,6 @@ map <leader>s? z=
 " Searching
 " -----------------------------
 set hlsearch
-set incsearch
 set ignorecase
 set smartcase
 set gdefault
@@ -219,7 +209,6 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
   \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
   \ }
-imap <C-g> <ESC>:CtrlP .<CR>
 vmap <C-g> <ESC>:CtrlP .<CR>
 nmap <C-g> <ESC>:CtrlP .<CR>
 
@@ -349,10 +338,6 @@ nmap ZSXX :w<CR>:bd!<CR>
 " Save the buffer
 nmap ZS :w<CR>
 nmap <leader>w :w<CR>
-
-"============="
-
-runtime! macros/matchit.vim
 
 "============="
 
