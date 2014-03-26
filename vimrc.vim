@@ -63,7 +63,7 @@ nnoremap <silent> <space>p :Pmenu<CR>
 " Colors
 " Source https://github.com/bzx/vim-theme-pack
 " Source https://github.com/ndzou/vim-colorschemes
-colorscheme railscasts
+colorscheme hemisu-dark
 call s:Pmenu()
 
 
