@@ -12,6 +12,7 @@ let mapleader = ","
 Source https://github.com/tpope/vim-sensible
 
 " Basic stuff
+set encoding=utf-8                     " always use the good encoding
 set mouse=a                            " allow the mouse to be used
 set title                              " set the window's title to the current filename
 set visualbell                         " no more beeping from Vim
